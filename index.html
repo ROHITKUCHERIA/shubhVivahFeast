@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shubh Vivah Feast</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #8B0000, #FFD700, #FFFFFF);
+            background-attachment: fixed;
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .hero {
+            background-image: url('https://images.pexels.com/photos/169198/pexels-photo-169198.jpeg?auto=compress&cs=tinysrgb&w=1000'); /* Reliable: Indian wedding decorations */
+            background-size: cover;
+            background-position: center;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            border-radius: 15px 15px 0 0;
+        }
+        .hero h1 {
+            font-size: 3em;
+            margin: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 0 0 15px 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            flex-grow: 1;
+        }
+        header p {
+            font-size: 1.2em;
+            color: #FFD700;
+            margin: 10px 0;
+            text-align: center;
+        }
+        .selector {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .selector label {
+            font-weight: 600;
+            color: #8B0000;
+            margin-right: 10px;
+        }
+        .selector select {
+            padding: 10px;
+            border: 2px solid #FFD700;
+            border-radius: 5px;
+            background: #FFFFFF;
+            font-size: 1em;
+            color: #333;
+        }
+        .time-display {
+            background: #FFD700;
+            color: #8B0000;
+            padding: 10px;
+            border-radius: 10px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .menu-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .menu-card {
+            background: #FFFFFF;
+            border: 2px solid #FFD700;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .menu-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        .menu-card h2 {
+            color: #8B0000;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+            text-align: center;
+        }
+        .menu-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #EEE;
+        }
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+        .menu-item img {
+            width: 50px;
+            height: 50px;
+            border-radius: 5px;
+            margin-right: 15px;
+            object-fit: cover;
+        }
+        .menu-item span {
+            flex-grow: 1;
+        }
+        .gallery {
+            margin-top: 30px;
+            text-align: center;
+        }
+        .gallery h2 {
+            color: #8B0000;
+            margin-bottom: 15px;
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+        }
+        .gallery-grid img {
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #8B0000;
+            color: #FFD700;
+            margin-top: 20px;
+            border-radius: 0 0 15px 15px;
+        }
+        footer p {
+            margin: 0;
+            font-size: 1em;
+        }
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 2em; }
+            .menu-section { grid-template-columns: 1fr; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <h1>Shubh Vivah Feast</h1>
+    </div>
+    <div class="container">
+        <header>
+            <p>Delicious Delights for Our Grand Celebration</p>
+        </header>
+        
+        <div class="selector">
+            <label for="menu-select">Choose Menu (or leave auto for time-based):</label>
+            <select id="menu-select">
+                <option value="auto">Curently</option>
+                <option value="breakfast">Breakfast</option>
+                <option value="lunch">Lunch</option>
+                <option value="dinner">Dinner</option>
+                <option value="closed">Closed</option>
+            </select>
+        </div>
+        
+        <div class="time-display">
+            Current Time: <span id="current-time"></span>
+        </div>
+        
+        <div class="menu-section" id="menu-content">
+            <!-- Menu will be dynamically inserted here -->
+        </div>
+        
+        <div class="gallery">
+            <h2>Wedding Moments</h2>
+            <div class="gallery-grid">
+                <img src="https://images.pexels.com/photos/169198/pexels-photo-169198.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Wedding couple" onerror="this.src='https://via.placeholder.com/150x100/FFD700/8B0000?text=Wedding'">
+                <img src="https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Indian wedding food" onerror="this.src='https://via.placeholder.com/150x100/FFD700/8B0000?text=Food'">
+                <img src="https://images.pexels.com/photos/169198/pexels-photo-169198.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Wedding decorations" onerror="this.src='https://via.placeholder.com/150x100/FFD700/8B0000?text=Decor'">
+                <img src="https://images.pexels.com/photos/169198/pexels-photo-169198.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Festive lights" onerror="this.src='https://via.placeholder.com/150x100/FFD700/8B0000?text=Lights'">
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>Enjoy the flavors of love and tradition! 🪔</p>
+    </footer>
+
+    <script>
+        // Define menus with Indian wedding-inspired items and reliable image URLs
+        const menus = {
+            breakfast: {
+                title: "Morning Blessings (Breakfast)",
+                items: [
+                    { name: "Masala Dosa - ₹150", img: "https://images.pexels.com/photos/5560763/pexels-photo-5560763.jpeg?auto=compress&cs=tinysrgb&w=200" },
+                    { name: "Poha with Nuts - ₹120", img: "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=200" },
+                    { name: "Chai & Paratha - ₹100", img: "https://images.pexels.com/photos/2775860/pexels-photo-2775860.jpeg?auto=compress&cs=tinysrgb&w=200" }
+                ]
+            },
+            lunch: {
+                title: "Afternoon Feast (Lunch)",
+                items: [
+                    { name: "Paneer Butter Masala - ₹250", img: "https://images.pexels.com/photos/2474661/pexels-photo-2474661.jpeg?auto=compress&cs=tinysrgb&w=200" },
+                    { name: "Biryani Platter - ₹300", img: "https://images.pexels.com/photos/5410409/pexels-photo-5410409.jpeg?auto=compress&cs=tinysrgb&w=200" },
+                    { name: "Raita & Salad - ₹80", img: "https://images.pexels.com/photos/1211887/pexels-photo-1211887.jpeg?auto=compress&cs=tinysrgb&w=200" }
+                ]
+            },
+            dinner: {
+                title: "Evening Celebrations (Dinner)",
+                items: [
+                    { name: "Dal Makhani - ₹200", img: "https://images.pexels.com/photos/2474661/pexels-photo-2474661.jpeg?auto=compress&cs=tinysrgb&w=200" },
+                    { name: "Tandoori Chicken - ₹350", img: "https://images.pexels.com/photos/2338407/pexels-photo-2338407.jpeg?auto=compress&cs=tinysrgb&w=200" },
+                    { name: "Gulab Jamun - ₹100", img: "https://images.pexels.com/photos/1099680/pexels-photo-1099680.jpeg?auto=compress&cs=tinysrgb&w=200" }
+                ]
+            },
+            closed: {
+                title: "Resting for Tomorrow's Joy",
+                items: [
+                    { name: "We'll be back soon with more delights!", img: "https://images.pexels.com/photos/169198/pexels-photo-169198.jpeg?auto=compress&cs=tinysrgb&w=200" }
+                ]
+            }
+        };
+
+        // Function to get current menu based on hour or selection
+        function getCurrentMenu(selected = 'auto') {
+            const now = new Date();
+            document.getElementById('current-time').textContent = now.toLocaleTimeString();
+
+            if (selected !== 'auto') {
+                return menus[selected];
+            }
+
+            const hour = now.getHours();
+            if (hour >= 6 && hour < 11) return menus.breakfast;
+            if (hour >= 11 && hour < 15) return menus.lunch;
+            if (hour >= 15 && hour < 22) return menus.dinner;
+            return menus.closed;
+        }
+
+        // Display the menu with image fallback
+        function displayMenu(selected = 'auto') {
+            const menu = getCurrentMenu(selected);
+            const content = document.getElementById('menu-content');
+            content.innerHTML = menu.items.map(item => `
+                <div class="menu-card">
+                    <h2>${menu.title}</h2>
+                    <div class="menu-item">
+                        <img src="${item.img}" alt="${item.name}" onerror="this.src='https://via.placeholder.com/50x50/FFD700/8B0000?text=Food'">
+                        <span>${item.name}</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Event listener for selector
+        document.getElementById('menu-select').addEventListener('change', function() {
+            displayMenu(this.value);
+        });
+
+        // Load menu on page load (defaults to auto)
+        window.onload = () => displayMenu();
+    </script>
+</body>
+</html>
